@@ -21,7 +21,7 @@ public class Order {
     @JoinColumn(name="id_client")
     private Client client;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="order_products",
     joinColumns = { @JoinColumn(name = "order_id", referencedColumnName = "id_order")},
     inverseJoinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id_product")})
@@ -75,10 +75,12 @@ public class Order {
 
     @Override
     public String toString() {
-        return "ClientOrder{" +
+        return "Order{" +
                 "id=" + id +
                 ", product='" + product + '\'' +
                 ", orderDetails='" + orderDetails + '\'' +
+                "products = " + products +
+
                 '}';
     }
 }

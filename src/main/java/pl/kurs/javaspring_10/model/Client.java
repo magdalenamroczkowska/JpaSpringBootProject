@@ -19,7 +19,7 @@ public class Client {
     @Column(nullable = false)
     private String address;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private List <Order> orders = new ArrayList<>();
 
 
@@ -67,6 +67,7 @@ public class Client {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
+                 "orders = " + orders +
                 '}';
     }
 }

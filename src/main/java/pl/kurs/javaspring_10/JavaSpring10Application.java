@@ -28,14 +28,21 @@ public class JavaSpring10Application {
         OrderDao orderDao = ctx.getBean(OrderDao.class);
         orderDao.save(order);
 
-        Product product = new Product("Telewizor LG", 4999.00, "42', czarny");
+        Product product1 = new Product("Telewizor LG", 4999.00, "42', czarny");
+        Product product2 = new Product("Telefon Samsung", 3000.00, "ładowarka i słuchawki w zestawie");
+
         ProductDao productDao = ctx.getBean(ProductDao.class);
-        productDao.save(product);
-        orderDao.addProductsToOrder(1L, product);
+        productDao.save(product1);
+        productDao.save(product2);
+
+        orderDao.addProductsToOrder(1L, product1, product2);
 
 
+        Client getClient = clientDao.get(client.getId());
+        System.out.println(getClient);
 
-       ctx.close();
+
+        ctx.close();
     }
 
 }
